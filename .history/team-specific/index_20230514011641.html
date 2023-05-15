@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Code Generation / Documentation model based on CodeT5</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="../home.html">Practical Machine Deep Learning</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../home.html">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Code Generation / Documentation model based on CodeT5</h1>
+        <ul class="list-unstyled">
+          <li>Omar Shaalan 900193887</li>
+          <li>Kyrollos Zakarya 900203309</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5"></h2>
+		<p>
+			Code generation is a very important in our current daily life. However, the documentation of the code is beyond important too,
+      we need the code that is generated to have a documentation generated with it in order to be able to generate a code that is understandable
+      and increase the efficency (we increase the efficency of the code by providing commented code, so it will be easier to understand and reuse or extract the 
+       needed parts from it)
+		</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Dataset</h2>
+
+        <p>
+			Our initial plan was to work with the Cocode's task dataset (concode is the code generation task), this was initially our intution
+      as our task, ConcodePlus(the commented code generation task), was going to generate the code that concode generated but with comments. However,
+      in concode's dataset we only had the code and the Natural Language describing the code, but no dataset had the code itself with comments in the same coloumn,
+      this of course limited our ways 
+      to train the model on genreating a documented code, as we had no clear dataset that had code, comments for that code, all we had was datasets having code and 
+      a natural language describing the code, as illustrated in the visualization of the Concode's dataset below.
+    </p>
+    <br/> <!-- Empty Line before the image -->
+    <div class="img-container" align="center"> <!-- Block parent element -->
+        <img src="resources/images/concode.png" class="img-fluid text-center">
+    </div>
+    <br/> <!-- Empty Line after the image -->
+<p>
+  Hence, we had to make a major change, that will allow us to have a dataset that contains a pair consisting of code and a prompt as usual describing 
+      the code, but in the code's column we added comments to the code itself in the same coloumn.
+      This was our own dataset, and we called PyPlus, as this dataset works on Python codes only, and the plus part is because it is the first of its 
+      type to contain code with detailed comments of the code in the same column, or at least the first 
+      of its type as an open source dataset, as we have found NO other open source or closed source (but this is hard to make sure of as closed source
+      are like a black box, you cannot see what is inside them) dataset in python storing data in that way.
+</p>
+<br/> <!-- Empty Line before the image -->
+<div class="img-container" align="center"> <!-- Block parent element -->
+    <img src="resources/images/dataset.png" class="img-fluid text-center">
+</div>
+	
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Input/Output Examples</h2>
+   <br>
+      </br>
+        <h3>
+			 Problem statement: -
+        </h3>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/Problem_Stat_1.png" class="img-fluid text-center">
+    	</div>
+      
+    	<br/> <!-- Empty Line after the image -->
+
+      <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/Problem_Stat_2.png" class="img-fluid text-center">
+    	</div>
+     
+
+        <br>
+      </br>
+         <h3>
+			 Our Own Output: -
+        </h3>
+
+      	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/output_real.png" class="img-fluid text-center">
+    	</div>
+      <!-- <p class = "center">
+        Feel the difference?
+     </p> -->
+     <br>
+    </br>
+  
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+  
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">State of the art (PARSEL)</h2>
+
+        <p>
+			SOTA models and their accuracies (tables are needed I believe):-
+		</p>
+
+	  <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/parsel_code_sum.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+    <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/Parsel_code_gen.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/parsel_1.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+      <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/parsel_2.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+      <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/parsel_3.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Orignial Model from Literature LEFT LESA</h2>
+
+        <p>
+			Details about the model here, add your model images below
+		</p>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/model.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Proposed Updates</h2>
+
+        <p>
+			Add all the model updates you made here, need as many images as you wish
+		</p>
+
+		<h5 class="mt-5">Update #1: Adding Reinforcement Learning</h5>
+		<p>
+			Give rewards when the generated documentation along with the code is correct and add negative rewards when the generation is not good.
+		</p>
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/reinforcement.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Results</h2>
+
+        <p>
+			LEFT lehad ma tet7asen Add your results here, add graphs and images to illustrate it.
+			Compare your results to the original model and state of the art
+		</p>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/results.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Technical report</h2>
+
+        <p>
+			LEft Here you will detail the details related to training, for example: Filled With KYRO
+		</p>
+
+	 	<ul>
+		  <li>Programming framework</li>
+		  <li>Training hardware i.e. colab or azure or anything else</li>
+		  <li>Training time</li>
+		  <li>Number of epochs</li>
+		  <li>Time per epoch</li>
+		  <li>Any other important detail or difficulties</li>
+		</ul> 
+      </div>
+    </div>
+
+	<div class="row">
+	  <div class="col-lg-12 text-left">
+	    <h2 class="mt-5">Conclusion</h2>
+
+	    <p>
+			Conclusion and future work (including lessons learned and interesting findings
+		</p>
+
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-lg-12 text-left">
+	    <h2 class="mt-5">References</h2>
+
+	    <p>
+	    	List all references here, the following are only examples
+	    </p>
+
+		<ol>
+		  <li><a href="https://arxiv.org/pdf/2212.10561v2.pdf">Parsel Paper</a></li>
+		  <li><a href="https://arxiv.org/pdf/2109.00859v1.pdf">CodeT5 PaperL</a></li>
+		  <li><a href="https://microsoft.github.io/CodeXGLUE/">Dataset Link LEFT need to upload it to github</a></li>
+		</ol> 
+	  </div>
+	</div>
+
+  </div>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.slim.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Code Generation / Documentation model based on CodeT5</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="../home.html">Practical Machine Deep Learning</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../home.html">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Code Generation / Documentation model based on CodeT5</h1>
+        <ul class="list-unstyled">
+          <li>Omar Shaalan 900193887</li>
+          <li>Kyrollos Zakarya 900203309</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5"></h2>
+		
+        <h1>
+          Problem statement: -
+           </h1>
+           <p>
+            Code generation is a very important in our current daily life. However, the documentation of the code is beyond important too,
+            we need the code that is generated to have a documentation generated with it in order to be able to generate a code that is understandable
+            and increase the efficency (we increase the efficency of the code by providing commented code, so it will be easier to understand and reuse or extract the 
+             needed parts from it)
+          </p>
+       <br/> <!-- Empty Line before the image -->
+         <div class="img-container" align="center"> <!-- Block parent element -->
+             <img src="resources/images/Screen Shot 2023-05-14 at 12.21.35 PM.png" class="img-fluid text-center">
+         </div>
+         
+         <br/> <!-- Empty Line after the image -->
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Dataset</h2>
+
+        <h3 class="mt-5">Old Dataset: -</h3>
+        <p>
+			Our initial plan was to work with the Cocode's task dataset (concode is the code generation task), this was initially our intution
+      as our task, ConcodePlus(the commented code generation task), was going to generate the code that concode generated but with comments. However,
+      in concode's dataset we only had the code and the Natural Language describing the code, but no dataset had the code itself with comments in the same coloumn,
+      this of course limited our ways 
+      to train the model on genreating a documented code, as we had no clear dataset that had code, comments for that code, all we had was datasets having code and 
+      a natural language describing the code, as illustrated in the visualization of the Concode's dataset below.
+    </p>
+    <br/> <!-- Empty Line before the image -->
+    <div class="img-container" align="center"> <!-- Block parent element -->
+        <img src="resources/images/concode.png" class="img-fluid text-center">
+    </div>
+    <br/> <!-- Empty Line after the image -->
+    <h3 class="mt-5">Modified Dataset: -</h3>
+    <p>
+  Hence, we had to make a major change, that will allow us to have a dataset that contains a pair consisting of code and a prompt as usual describing 
+      the code, but in the code's column we added comments to the code itself in the same coloumn.
+      This was our own dataset, and we called PyPlus, as this dataset works on Python codes only, and the plus part is because it is the first of its 
+      type to contain code with detailed comments of the code in the same column, or at least the first 
+      of its type as an open source dataset, as we have found NO other open source or closed source (but this is hard to make sure of as closed source
+      are like a black box, you cannot see what is inside them) dataset in python storing data in that way.
+</p>
+<br/> <!-- Empty Line before the image -->
+<div class="img-container" align="center"> <!-- Block parent element -->
+    <img src="resources/images/dataset.png" class="img-fluid text-center">
+</div>
+	
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Input/Output Examples</h2>
+   <br>
+      </br>
+
+
+    
+      </br>
+         <h3>
+			 Our Own Output: -
+        </h3>
+
+      	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/output_real.png" class="img-fluid text-center">
+    	</div>
+      <!-- <p class = "center">
+        Feel the difference?
+     </p> -->
+     <br>
+    </br>
+  
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+  
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">State of the art (PARSEL)</h2>
+
+        <p>
+			Parsel is an Open AI deep learning project, it has been the state of the art in the field of code generation task aloong with code summrization as shown below in the tables and the graphs.
+      It is based on the GPT architecture (Generative Pre-trained Transformer), the version of Parsel mentioned in the tables below is the 1.5B, which refers to the larges Parsel version
+      existing as it uses 1.5 Billion parameters. 
+      Even though it is a open source, the usage of Open AI APIs limited our usage and the freedom of adding our creativity.
+		</p>
+
+	  <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/parsel_code_sum.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+    <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/Parsel_code_gen.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/parsel_1.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+      <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/parsel_2.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+      <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/parsel_3.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Orignial Model from Literature.</h2>
+
+        <p>
+			Our model, CodeT5, has 3 main versions. The small, base, and big. The small has 60 million parameters, the big has 770 million parameters and the base version, which we worked with is 220 million parameters.
+      We started with the smal version due to our limitations on Google Colab, which made it very hard to work with versions that had larger size from the parameters prespective. However, due to reaching bad results 
+      as explained in our previous presentations, we had to find a way around to use the base version. Using the base version worked more than fine, and we reached the desired output as shown above. Please find below
+      more details about the original codeT5 model.
+		</p>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/codet5_arch.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Proposed Updates</h2>
+
+
+		<h5 class="mt-5">Update #1: Adding Reinforcement Learning</h5>
+		<p>
+			Give rewards when the generated documentation along with the code is correct and add negative rewards when the generation is not good.
+		</p>
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/reinforcement.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+      	<p>
+			Hyperparameter tune the model. Base on one of the very famous concepts we took in our class is the concept of trial and error. Please feel free to try
+      several times to change and tune the hyperprameters in order to reach better results. Feel free to share your outcomes with us.
+		</p>
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/copyHyper.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Results</h2>
+
+        <p>
+			Please find below our results obtained after adding our task, ConcodePlus, and the plots too.
+		</p>
+
+		<br/> <!-- Empty Line before the image -->
+    	<h3 class="mt-5">It is obvious that there is something wrong with calculations of the metrics of concodePlus 
+      since the blue score definitely does not reflect the model performance. This can be due to the fact that we added
+       a new task to the model without taking into account the synchronization required to measure these metrices for the 
+      new task specifically </h3>
+      <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/metrics_obtained.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/dev_metric.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/dev2_metric.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/metric3.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Technical report</h2>
+
+        <p>
+			LEft Here you will detail the details related to training, for example: Filled With KYRO
+		</p>
+
+	 	<ul>
+		  <li>Programming framework</li>
+		  <li>Training hardware i.e. colab or azure or anything else</li>
+		  <li>Training time</li>
+		  <li>Number of epochs</li>
+		  <li>Time per epoch</li>
+		  <li>Any other important detail or difficulties</li>
+		</ul> 
+      </div>
+    </div>
+
+	<div class="row">
+	  <div class="col-lg-12 text-left">
+	    <h2 class="mt-5">Conclusion</h2>
+
+	    <p>
+			In conclusion we have reached our goal by generating documented code by adding the new task, ConcodePlus to CodeT5, and by creating a new dataset which is PyPlus. As shown in the output provided above it is clear that our code has a documentation of the purpose of the function. We have some promising results and some results that still need to work on.
+      We also have room for future improvement, which is adding the reinforcement learning to the ConcodePlus. One of the very nice lessons that we learned was the visualization of what we theortically studied in class, the project was more challenging than the assignments and that made us more motivated and dedicated towards having the desired output. We also 
+      learned how to work as a team to achieve the maximum potential and the maximum benefit. A very intersting finding was not found, but actually it was created, which was the dataset modification. Both of us would have never imagined that we would create a dataset that fits for these type of problems and projects, this dataset may be the first step in a world 
+      of trials and great achievements in the code generation models in the future.
+		</p>
+
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-lg-12 text-left">
+	    <h2 class="mt-5">References</h2>
+
+	    <p>
+	    	List all references here, the following are only examples
+	    </p>
+
+		<ol>
+		  <li><a href="https://arxiv.org/pdf/2212.10561v2.pdf">Parsel Paper</a></li>
+      <li><a href="https://microsoft.github.io/CodeXGLUE/">Parsel Code Summarization Table</a></li>
+      <li><a href="https://microsoft.github.io/CodeXGLUE/">Parsel Code Generation Table</a></li>
+		  <li><a href="https://arxiv.org/pdf/2109.00859v1.pdf">CodeT5 Paper</a></li>
+		  <li><a href="https://medium.com/analytics-vidhya/t5-a-detailed-explanation-a0ac9bc53e51">CodeT5 Architecture Paper</a></li>      
+		  <li><a href="http://www.google.com">Dataset Link LEFT need to upload it to github</a></li>
+		</ol> 
+	  </div>
+	</div>
+
+  </div>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.slim.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
