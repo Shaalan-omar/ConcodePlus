@@ -162,10 +162,9 @@
         <h2 class="mt-5">Orignial Model from Literature.</h2>
 
         <p>
-			Our model, CodeT5, has 3 main versions. The small, base, and large. The small has 60 million parameters, the large has 770 million parameters and the base version, which we worked with is 220 million parameters.
-      We started with the small version due to our limitations on Google Colab, which made it very hard to work with versions that had larger size from the parameters prespective. However, due to reaching bad results 
-      as explained in our previous presentations, we had to find a way around to use the base version. Using the base version worked more than fine, and we reached the desired output as shown above. Please find below
-      more details about the original codeT5 model.
+			The model, CodeT5, has 3 main versions. The small, base, and large. The small has 60 million parameters, the large has 770 million parameters and the base version is 220 million parameters.
+      Working with the small version due to the limitations on Google Colab, which makes it very hard to work with versions that had larger size from the parameters prespective. However, working with the small version ended up to reaching bad results 
+      as explained in our previous presentations. However, working with PyPlus, the new dataset, made it easier to work with the small version.
 		</p>
 
 		<br/> <!-- Empty Line before the image -->
@@ -217,9 +216,33 @@
       </div>
     </div>
 
+
+    <div class = "row">
+        <div class="col-lg-12 text-left" >
+            <h2 class="mt-5" >Updates </h2>
+
+              <h5 class="mt-5">Update #1: Commented Code generation</h5>
+              <p>
+                We have reached the desired output by generating commented code that serves the problem statment's goals. The comments are meaningful and cosidered correct from the description of the code prespective.
+                Below are the steps of reaching such a goal.
+              </p>
+              <div class="img-container" align="center"> <!-- Block parent element -->
+                <img src="resources/images/workflow.png" class="img-fluid text-center">
+            </div>
+            <p>
+              We first had to configure the new task. To do this we had to change the config.py file, we added code for the ConcodePlus
+              task allowing it to be defined in our model. We then needed to creat a new reading function that reads the dataset that 
+              reads PyPlus dataset. For such a task we added a new reading function to the Utils.py file. What was left was adding 
+              the data path. We did this by adding the datapath to _Utils.py
+            </p>
+           
+        </div>
+    </div>
+
+
     <div class="row">
       <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Proposed Updates</h2>
+        <h2 class="mt-5">Recommended Future Updates</h2>
 
 
 		<h5 class="mt-5">Update #1: Adding Reinforcement Learning</h5>
